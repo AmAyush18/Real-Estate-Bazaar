@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { Home, SignIn, SignUp, Profile, About } from './pages/index';
-import {Header} from './components/';
+import {Header, PrivateRoute} from './components/';
 
 const App = () => {
   return (
@@ -11,8 +11,10 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/path' element={<About />} />
+        <Route path='/about' element={<About />} />
+        <Route element={<PrivateRoute />} >
+          <Route path='/profile' element={<Profile />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   )
