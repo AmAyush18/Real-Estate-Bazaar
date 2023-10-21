@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import { Home, SignIn, SignUp, Profile, About, CreateListing, UpdateListing } from './pages/index';
+import { Home, SignIn, SignUp, Profile, About, CreateListing, UpdateListing, Listing } from './pages/index';
 import {Header, PrivateRoute} from './components/';
 
 const App = () => {
@@ -12,6 +12,8 @@ const App = () => {
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
         <Route path='/about' element={<About />} />
+        <Route path='/listing/:listingId' element={<Listing />} />
+        
         <Route element={<PrivateRoute />} >
           <Route path='/profile' element={<Profile />} />
           <Route path='/create-listing' element={<CreateListing />} />
