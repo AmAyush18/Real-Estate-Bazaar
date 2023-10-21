@@ -128,11 +128,16 @@ const Listing = () => {
                             {listing.parking ? 'Parking Spot' : 'No Parking'}
                         </li>
                         <li className="flex items-center gap-1 whitespace-nowrap">
-                            <FaChair className="text-lg "/>
+                            <FaChair className="text-lg"/>
                             {listing.furnished ? 'Furnished' : ' Unfurnished'}
                         </li>
-                        
                     </ul>
+                    {currentUser && listing.userRef !== currentUser._id && !contact && (
+                        <button onClick={() => setContact(true)} className="bg-slate-700 text-white rounded-lg uppercase hover:opacity-95">Contact Landlord</button>
+                    )}
+                    {contact && (
+                        <Contact listing={listing} />
+                    )}
                 </div>
             </div>
         )}
