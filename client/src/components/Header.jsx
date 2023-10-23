@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 
 const Header = () => {
-    const { currentUser } = useSelector(state => state.user);
+    const { currentUser } = useSelector((state) => state.user);
     const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
 
@@ -15,55 +15,52 @@ const Header = () => {
         const searchQuery = urlParams.toString();
         console.log(searchTerm, ' ', searchQuery);
         navigate(`/search?${searchQuery}`);
-    }
+    };
 
     useEffect(() => {
         const urlParams = new URLSearchParams(location.search);
-        const searchTermFromUrl = urlParams.get('searchTerm'); 
-        if(searchTermFromUrl) {
+        const searchTermFromUrl = urlParams.get('searchTerm');
+        if (searchTermFromUrl) {
             setSearchTerm(searchTermFromUrl);
         }
-    },[location.search])
+    }, [location.search]);
 
-  return (
-    <header className='bg-slate-200 shadow-md'>
-    <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
-        <Link to='/'>
-            <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
-                <span className='text-slate-500'>R-Est</span>
-                <span className='text-slate-700'>Bazaar</span>
-            </h1>
-        </Link>
-        <form onSubmit={handleSubmit} className='bg-slate-100 p-3 rounded-lg flex items-center'>
-            <input 
-                onChange={(e) => setSearchTerm(e.target.value)}
-                type="text" 
-                placeholder='Search..' 
-                value={searchTerm}
-                className='bg-transparent focus: outline-none w-24 sm:w-64' 
-            />
-            <button>
-                <FaSearch className='text-slate-600' />
-            </button>
-        </form>
-        <ul className='flex gap-4'>
-            <Link to='/'>
-                <li className='hidden sm:inline text-slate-700 hover:underline'>Home</li>
-            </Link>
-            <Link to='/about'>
-                <li className='hidden sm:inline text-slate-700 hover:underline'>About</li>
-            </Link>
-            <Link to='/profile'>
-                { currentUser ? (
-                    <img className='rounded-full h-7 w-7 object-cover' src={currentUser.avatar} alt="profile" />
-                ) : (
-                    <li className='sm:inline text-slate-700 hover:underline'>Sign In</li>
-                )}
-            </Link>
-        </ul>
-    </div>
-    </header>
-  )
-}
+    return (
+        <header className="bg-teal-800 shadow-md">
+            <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
+                <Link to="/" className="text-3xl font-bold text-white">
+                    R-Est<span className="text-yellow-400">Bazaar</span>
+                </Link>
+                <form onSubmit={handleSubmit} className="bg-white p-3 rounded-lg flex items-center">
+                    <input
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        type="text"
+                        placeholder="Search.."
+                        value={searchTerm}
+                        className="bg-transparent focus:outline-none w-64"
+                    />
+                    <button className="ml-2">
+                        <FaSearch className="text-teal-800" />
+                    </button>
+                </form>
+                <ul className="flex gap-4">
+                    <Link to="/" className="text-white hover:text-yellow-400">
+                        Home
+                    </Link>
+                    <Link to="/about" className="text-white hover:text-yellow-400">
+                        About
+                    </Link>
+                    <Link to="/profile" className="text-white hover:text-yellow-400">
+                        {currentUser ? (
+                            <img className="rounded-full h-7 w-7 object-cover" src={currentUser.avatar} alt="profile" />
+                        ) : (
+                            "Sign In"
+                        )}
+                    </Link>
+                </ul>
+            </div>
+        </header>
+    );
+};
 
 export default Header;
