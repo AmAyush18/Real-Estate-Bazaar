@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { Home, SignIn, SignUp, Profile, About, CreateListing, UpdateListing, Listing, Search } from './pages/index';
 import {Header, PrivateRoute} from './components/';
+import Footer from './components/Footer';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path='/update-listing/:listingId' element={<UpdateListing />} />
         </Route>
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }
